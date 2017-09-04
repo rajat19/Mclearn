@@ -1,4 +1,4 @@
-[^]# Machine Learning using Octave
+# Machine Learning using Octave
 
 ### Linear Regression
 1. **computeCost.m**
