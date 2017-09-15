@@ -53,12 +53,12 @@ for c = 1:num_labels,
   all_theta(c, :) = theta';
 end
 
-// Predict final value of hTheta for one vs all
+// Predict final value of hTheta (1 layer)
 predict = sigmoid(X * all_theta');
 [predict_mx, index_mx] =  max(predict, [], 2);
 p = index_mx;
 
-// Predict final value of hTheta for 2 layers
+// Predict final value of hTheta (2 layers)
 a1 = [ones(m,1) X];
 z2 = a1 * Theta1';
 a2 = [ones(size(z2), 1) sigmoid(z2)];
@@ -66,4 +66,26 @@ z3 = a2 * Theta2';
 a3 = sigmoid(z3);
 [predict_mx, index_mx] =  max(a3, [], 2);
 p = index_mx;
+```
+### Neural Network Learning
+1. **sigmoidGradient.m**
+2. **randInitializeWeights.m**
+3. **nnCostFunction.m**
+
+```matlab
+// Initialize sigmoid gradient
+g = sigmoid(z) .* (1 - sigmoid(z));
+
+// Initialize random weights to start learning
+epsilon_init = 0.12;
+W = rand(L_out, 1 + L_in) * 2 * epsilon init − epsilon init;
+
+// Regularization factor
+penalty = (lambda/(2*m))*(sum(sum(Theta1(:, 2:end).^2, 2)) + sum(sum(Theta2(:,2:end).^2, 2)));
+
+// Backpropagation
+Sigma3 = A3 - Y;
+Sigma2 = (Sigma3 * Theta2 .* sigmoidGradient([ones(size(Z2, 1), 1) Z2]))(:, 2:end);
+Delta_1 = Sigma2'*A1;
+Delta_2 = Sigma3'*A2;
 ```
