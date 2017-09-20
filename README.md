@@ -67,6 +67,7 @@ a3 = sigmoid(z3);
 [predict_mx, index_mx] =  max(a3, [], 2);
 p = index_mx;
 ```
+
 ### Neural Network Learning
 1. **sigmoidGradient.m**
 2. **randInitializeWeights.m**
@@ -88,4 +89,31 @@ Sigma3 = A3 - Y;
 Sigma2 = (Sigma3 * Theta2 .* sigmoidGradient([ones(size(Z2, 1), 1) Z2]))(:, 2:end);
 Delta_1 = Sigma2'*A1;
 Delta_2 = Sigma3'*A2;
+```
+
+### Evaluate Learning Algorithm
+1. **linearRegCostFunction.m**
+2. **learningCurve.m**
+3. **polyFeatures.m**
+4. **validationCurve.m**
+
+```matlab
+// Learning Curve
+for i=1:m
+    X_train = X(1:i, :);
+    y_train = y(1:i);
+    theta = trainLinearReg(X_train, y_train, lambda);
+    error_train(i) = linearRegCostFunction(X_train, y_train, theta, 0);
+    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);
+end
+
+// Validation Curve
+X_train = X;
+y_train = y;
+for i = 1:length(lambda_vec)
+    lambda         = lambda_vec(i);
+    theta          = trainLinearReg(X_train, y_train, lambda);
+    error_train(i) = linearRegCostFunction(X_train, y_train, theta, 0);
+    error_val(i)   = linearRegCostFunction(Xval   , yval   , theta, 0);
+end
 ```
