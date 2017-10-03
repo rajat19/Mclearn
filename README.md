@@ -117,3 +117,24 @@ for i = 1:length(lambda_vec)
     error_val(i)   = linearRegCostFunction(Xval   , yval   , theta, 0);
 end
 ```
+
+### Support Vector Machines
+1. **gaussianKernel.m**
+2. **dataset3Params.m**
+3. **processEmail.m**
+4. **emailFeatures.m**
+
+```matlab
+// Gaussian Kernel Similarity
+sim = e^(-(sum((x1-x2) .^ 2))/(2*sigma^2));
+
+// Predict best values for C and sigma
+error_min = inf;
+model = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
+err = mean(double(svmPredict(model, Xval) ~= yval));
+if (err <= error_min)
+    C_final = C;
+    sigma_final = sigma;
+    error_min = err;
+end
+```
