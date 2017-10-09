@@ -138,3 +138,24 @@ if (err <= error_min)
     error_min = err;
 end
 ```
+
+### Unsupervised Learning
+1. **findClosestCentroids.m**
+2. **computeCentroids.m**
+3. **pca.m**
+4. **projectData.m**
+5. **recoverData.m**
+
+```matlab
+// Closest Centroids
+diff = X(i, :)' - centroids(k, :)';
+d = diff' * diff;
+centroids(k, :) = (sum/num)';
+
+// PCA
+Sigma = (1/m) * (X'*X);
+[U, S, V] = svd(Sigma);
+
+Z(i, :) = (U_reduce'*X(i, :)')';
+X_rec(i, :) = (U_reduce*Z(i, :)')';
+```
