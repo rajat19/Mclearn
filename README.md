@@ -159,3 +159,13 @@ Sigma = (1/m) * (X'*X);
 Z(i, :) = (U_reduce'*X(i, :)')';
 X_rec(i, :) = (U_reduce*Z(i, :)')';
 ```
+
+### Anomaly Detection
+1. **estimateGaussian.m**
+2. **selectThreshold.m**
+
+```matlab
+mu = mean(X);
+sigma2 = var(X, 1)
+F1 = 2 * precision * recall / (precision + recall);
+```
