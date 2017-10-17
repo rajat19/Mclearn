@@ -169,3 +169,12 @@ mu = mean(X);
 sigma2 = var(X, 1)
 F1 = 2 * precision * recall / (precision + recall);
 ```
+
+### Recommender Systems
+1. **cofiCostFunc.m**
+
+```matlab
+J = J + (lambda / 2) * (sumsq(Theta(:)) + sumsq(X(:)));
+X_grad = X_grad + lambda * X;
+Theta_grad = Theta_grad + lambda * Theta;
+```
